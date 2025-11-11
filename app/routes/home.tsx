@@ -1,4 +1,5 @@
 import type { Route } from "./+types/home";
+import { CityOverview } from "~/components/CityOverview";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,5 +9,12 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div className="p-4">
+      <h1>Les communes françaises</h1>
+      <div>
+        <CityOverview />
+      </div>
+    </div>
+  );
 }
