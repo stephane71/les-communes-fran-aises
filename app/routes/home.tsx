@@ -21,6 +21,7 @@ export default function Home() {
       <div className="flex flex-col gap-2">
         {(cities as City[]).map(({ nom, code, population }) => (
           <CityOverviewCard
+            key={code}
             src={`/flags/${nom}${code}.svg`}
             name={nom}
             code={code}
