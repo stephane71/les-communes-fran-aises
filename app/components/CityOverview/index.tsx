@@ -17,7 +17,7 @@ export const CityOverview = ({ src, name, code }: CityOverviewProps) => {
   };
 
   return (
-    <div className="border rounded-lg p-2 flex gap-2">
+    <div className="flex gap-2">
       <div className="flex items-center">
         <img
           alt="flag"
