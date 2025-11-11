@@ -7,9 +7,15 @@ export type CityOverviewProps = {
   src: string;
   name: string;
   code: string;
+  population: number;
 };
 
-export const CityOverview = ({ src, name, code }: CityOverviewProps) => {
+export const CityOverview = ({
+  src,
+  name,
+  code,
+  population,
+}: CityOverviewProps) => {
   const handleError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.currentTarget;
     target.onerror = null;
@@ -30,6 +36,9 @@ export const CityOverview = ({ src, name, code }: CityOverviewProps) => {
       <div className="flex flex-col items-start justify-between">
         <span>{name}</span>
         <span>{code}</span>
+        {population > 300000 && (
+          <span className="text-gray-500">{"> 300 000 habitants"}</span>
+        )}
       </div>
     </div>
   );
