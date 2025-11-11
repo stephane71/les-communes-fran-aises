@@ -2,6 +2,7 @@ import type { Route } from "./+types/home";
 import { CityOverviewCard } from "~/components/CityOverviewCard";
 import cities from "~/assets/cities.json";
 import type { City } from "~/types";
+import { useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -11,9 +12,12 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const [selectedCity, setSelectedCity] = useState("");
+
   return (
     <div className="p-4">
       <h1>Les communes françaises</h1>
+      {selectedCity && <div>Selected city: {selectedCity}</div>}
       <div className="flex flex-col gap-2">
         {(cities as City[]).map(({ nom, code, population }) => (
           <CityOverviewCard
@@ -23,7 +27,7 @@ export default function Home() {
             code={code}
             population={population}
             onClick={() => {
-              alert("clicked on " + nom);
+              setSelectedCity(selectedCity === nom ? "" : nom);
             }}
           />
         ))}
