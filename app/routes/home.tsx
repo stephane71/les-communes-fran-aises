@@ -2,7 +2,7 @@ import type { Route } from "./+types/home";
 import { CityOverviewCard } from "~/components/CityOverviewCard";
 import cities from "~/assets/cities.json";
 import type { City } from "~/types";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -13,6 +13,10 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const [selectedCity, setSelectedCity] = useState("");
+
+  const handleClick = useCallback((name: string) => {
+    setSelectedCity(selectedCity === name ? "" : name);
+  }, []);
 
   return (
     <div className="p-4">
@@ -26,9 +30,7 @@ export default function Home() {
             name={nom}
             code={code}
             population={population}
-            onClick={() => {
-              setSelectedCity(selectedCity === nom ? "" : nom);
-            }}
+            onClick={handleClick}
           />
         ))}
       </div>

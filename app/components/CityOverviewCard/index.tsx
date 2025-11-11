@@ -3,22 +3,22 @@ import {
   type CityOverviewProps,
 } from "~/components/CityOverview";
 import { Card } from "~/components/ui/Card";
+import { memo } from "react";
 
 export type CityOverviewCardProps = CityOverviewProps & {
-  onClick?: () => void;
+  onClick: (name: string) => void;
 };
 
-export const CityOverviewCard = ({
-  onClick,
-  ...props
-}: CityOverviewCardProps) => {
-  if (props.population < 100000) {
-    return null;
-  }
+export const CityOverviewCard = memo(
+  ({ onClick, ...props }: CityOverviewCardProps) => {
+    if (props.population < 100000) {
+      return null;
+    }
 
-  return (
-    <Card onClick={onClick}>
-      <CityOverview {...props} />
-    </Card>
-  );
-};
+    return (
+      <Card onClick={() => onClick(props.name)}>
+        <CityOverview {...props} />
+      </Card>
+    );
+  },
+);
