@@ -22,6 +22,9 @@ export default function Home() {
             name={nom}
             code={code}
             population={population}
+            onClick={() => {
+              alert("clicked on " + nom);
+            }}
           />
         ))}
       </div>

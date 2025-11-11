@@ -4,15 +4,20 @@ import {
 } from "~/components/CityOverview";
 import { Card } from "~/components/ui/Card";
 
-export type CityOverviewCardProps = CityOverviewProps;
+export type CityOverviewCardProps = CityOverviewProps & {
+  onClick?: () => void;
+};
 
-export const CityOverviewCard = (props: CityOverviewCardProps) => {
+export const CityOverviewCard = ({
+  onClick,
+  ...props
+}: CityOverviewCardProps) => {
   if (props.population < 100000) {
     return null;
   }
 
   return (
-    <Card>
+    <Card onClick={onClick}>
       <CityOverview {...props} />
     </Card>
   );
