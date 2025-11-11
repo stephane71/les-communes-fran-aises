@@ -1,6 +1,5 @@
 import type { Route } from "./+types/home";
-import { CityOverview } from "~/components/CityOverview";
-import { Card } from "~/components/ui/Card";
+import { CityOverviewCard } from "~/components/CityOverviewCard";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,13 +13,11 @@ export default function Home() {
     <div className="p-4">
       <h1>Les communes françaises</h1>
       <div>
-        <Card>
-          <CityOverview
-            src={`/flags/Annecy74010.svg`}
-            name={"Annecy"}
-            code={"74010"}
-          />
-        </Card>
+        <CityOverviewCard
+          src={`/flags/Annecy74010.svg`}
+          name={"Annecy"}
+          code={"74010"}
+        />
       </div>
     </div>
   );
