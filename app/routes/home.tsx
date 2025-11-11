@@ -13,7 +13,11 @@ export default function Home() {
     <div className="p-4">
       <h1>Les communes françaises</h1>
       <div>
-        <CityOverview />
+        <CityOverview
+          src={`/flags/Annecy74010.svg`}
+          name={"Annecy"}
+          code={"74010"}
+        />
       </div>
     </div>
   );
