@@ -1,10 +1,9 @@
-import type { Route } from "./+types/home";
 import { CityOverviewCard } from "~/components/CityOverviewCard";
 import cities from "~/assets/cities.json";
 import type { City } from "~/types";
 import { useCallback, useState } from "react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "New React Router App" },
     { name: "description", content: "Welcome to React Router!" },
@@ -14,9 +13,12 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   const [selectedCity, setSelectedCity] = useState("");
 
-  const handleClick = useCallback((name: string) => {
-    setSelectedCity(selectedCity === name ? "" : name);
-  }, []);
+  const handleClick = useCallback(
+    (name: string) => {
+      setSelectedCity(selectedCity === name ? "" : name);
+    },
+    [selectedCity],
+  );
 
   return (
     <div className="p-4">
