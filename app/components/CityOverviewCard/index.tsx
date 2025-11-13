@@ -16,7 +16,7 @@ export const CityOverviewCard = memo(
     }
 
     return (
-      <Card onClick={() => onClick(props.name)}>
+      <Card onClick={() => onClick(props.code)}>
         <CityOverview {...props} />
       </Card>
     );
