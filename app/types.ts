@@ -14,4 +14,6 @@ export type Department = {
 
 export type CityFiltersType = {
   department: string;
+  populationMin?: number;
+  populationMax?: number;
 };
