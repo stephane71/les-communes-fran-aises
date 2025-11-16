@@ -5,3 +5,13 @@ export type City = {
   codeDepartement: string;
   codeRegion: string;
 };
+
+export type Department = {
+  nom: string;
+  code: string;
+  codeRegion: string;
+};
+
+export type CityFiltersType = {
+  department: string;
+};
