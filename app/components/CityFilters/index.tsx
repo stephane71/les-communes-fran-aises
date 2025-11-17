@@ -1,5 +1,6 @@
 import { useCityFilters } from "~/components/CityFilters/useCityFilters";
 import type { CityFiltersType } from "~/types";
+import { useEffect, useRef } from "react";
 
 export type CityFiltersProps = {
   value: CityFiltersType;
@@ -8,6 +9,14 @@ export type CityFiltersProps = {
 
 export const CityFilters = ({ value, onChange }: CityFiltersProps) => {
   const { departments } = useCityFilters();
+
+  const populationMin = useRef(null);
+
+  useEffect(() => {
+    if (populationMin.current) {
+      (populationMin.current as HTMLInputElement).focus();
+    }
+  }, []);
 
   return (
     <div>
@@ -26,6 +35,7 @@ export const CityFilters = ({ value, onChange }: CityFiltersProps) => {
         <label className="flex flex-col items-start gap-1">
           <span>Population min</span>
           <input
+            ref={populationMin}
             type="number"
             min={0}
             value={value.populationMin ?? ""}

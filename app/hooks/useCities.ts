@@ -11,8 +11,10 @@ const CITY_FILTER_DEFAULT = {
 export const useCities = () => {
   const [cities, setCities] = useState<City[]>([]);
   const [filters, setFilters] = useState<CityFiltersType>(CITY_FILTER_DEFAULT);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const trigger = async () => {
       const res = await fetch(`https://geo.api.gouv.fr/communes`);
 
@@ -23,12 +25,15 @@ export const useCities = () => {
   }, []);
 
   const citiesFiltered = useMemo(() => {
-    return citiesFilter({ cities, filters });
+    setIsLoading(true);
+    const citiesFiltered = citiesFilter({ cities, filters });
+    setIsLoading(false);
+    return citiesFiltered;
   }, [cities, filters]);
 
   const handleChangeFilters = (newFilters: CityFiltersType) => {
     setFilters(newFilters);
   };
 
-  return { cities: citiesFiltered, handleChangeFilters, filters };
+  return { cities: citiesFiltered, handleChangeFilters, filters, isLoading };
 };
