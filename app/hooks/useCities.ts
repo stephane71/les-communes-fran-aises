@@ -3,7 +3,7 @@ import type { City, CityFiltersType } from "~/types";
 import { citiesFilter } from "~/utils/citiesFilter";
 
 const CITY_FILTER_DEFAULT = {
-  department: "",
+  department: "01",
   populationMin: undefined,
   populationMax: undefined,
 };

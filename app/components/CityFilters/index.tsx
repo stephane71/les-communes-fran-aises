@@ -24,7 +24,6 @@ export const CityFilters = ({ value, onChange }: CityFiltersProps) => {
         value={value.department}
         onChange={(e) => onChange({ ...value, department: e.target.value })}
       >
-        <option value="">All Departments</option>
         {departments.map(({ nom, code }) => (
           <option key={code} value={code}>
             {`${code} - ${nom}`}
