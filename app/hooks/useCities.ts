@@ -14,26 +14,25 @@ export const useCities = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     const trigger = async () => {
-      const res = await fetch(`https://geo.api.gouv.fr/communes`);
+      const res = await fetch(
+        `https://geo.api.gouv.fr/departements/${filters.department}/communes`,
+      );
+      const citiesRes = (await res.json()) as City[];
 
-      setCities((await res.json()) as City[]);
+      const citiesFiltered = citiesFilter({ cities: citiesRes, filters });
+
+      setCities(citiesFiltered);
+      setIsLoading(false);
     };
 
-    void trigger();
-  }, []);
-
-  const citiesFiltered = useMemo(() => {
     setIsLoading(true);
-    const citiesFiltered = citiesFilter({ cities, filters });
-    setIsLoading(false);
-    return citiesFiltered;
-  }, [cities, filters]);
+    void trigger();
+  }, [filters]);
 
   const handleChangeFilters = (newFilters: CityFiltersType) => {
     setFilters(newFilters);
   };
 
-  return { cities: citiesFiltered, handleChangeFilters, filters, isLoading };
+  return { cities, handleChangeFilters, filters, isLoading };
 };
