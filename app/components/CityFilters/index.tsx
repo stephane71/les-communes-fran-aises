@@ -1,6 +1,13 @@
 import { useCityFilters } from "~/components/CityFilters/useCityFilters";
 import type { CityFiltersType } from "~/types";
 import { useEffect, useRef } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 
 export type CityFiltersProps = {
   value: CityFiltersType;
@@ -20,16 +27,22 @@ export const CityFilters = ({ value, onChange }: CityFiltersProps) => {
 
   return (
     <div>
-      <select
+      <Select
         value={value.department}
-        onChange={(e) => onChange({ ...value, department: e.target.value })}
+        onValueChange={(department) => onChange({ ...value, department })}
       >
-        {departments.map(({ nom, code }) => (
-          <option key={code} value={code}>
-            {`${code} - ${nom}`}
-          </option>
-        ))}
-      </select>
+        <SelectTrigger>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {departments.map(({ nom, code }) => (
+            <SelectItem key={code} value={code}>
+              {`${code} - ${nom}`}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+
       <div className="flex gap-4">
         <label className="flex flex-col items-start gap-1">
           <span>Population min</span>
